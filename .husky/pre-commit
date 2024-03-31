@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+echo "开始执行 格式化代码... and ESLint...\n"
+npx lint-staged
