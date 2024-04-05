@@ -14,8 +14,8 @@ async function add(options: AddOptions = {}): Promise<void> {
   const { files = [] } = options
 
   const args = files.length > 0 ? files : ['-A']
-
   try {
+    console.log(`向暂存区添加更改: ${args}, ${options}`)
     await execa('git', ['add', ...args])
   } catch (error: any) {
     console.error(`向暂存区添加更改时候出错[git add]: ${error.message}`)
