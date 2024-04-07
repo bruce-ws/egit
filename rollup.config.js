@@ -2,7 +2,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
-
+import JSON from '@rollup/plugin-json'
 export default {
   input: 'src/index.ts',
   output: {
@@ -20,6 +20,7 @@ export default {
       clean: true,
       useTsconfigDeclarationDir: true,
     }),
+    JSON(),
   ],
-  external: ['commander'],
+  external: ['commander', 'execa', 'inquirer'],
 }
