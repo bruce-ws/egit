@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
 import JSON from '@rollup/plugin-json'
+import alias from '@rollup/plugin-alias'
 export default {
   input: 'src/index.ts',
   output: {
@@ -14,13 +15,16 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    terser(), // 可选，用于生产环境压缩代码
+    terser(),
     typescript({
       tsconfig: './tsconfig.json',
       clean: true,
       useTsconfigDeclarationDir: true,
     }),
     JSON(),
+    alias({
+      entries: [{ find: '@', replacement: './src' }],
+    }),
   ],
   external: ['commander', 'execa', 'inquirer'],
 }
