@@ -1,11 +1,16 @@
 module.exports = {
-  testMatch: ['<rootDir>/src/test/**/*.(test|spect).(ts|js)'],
-  testPathIgnorePatterns: ['/node_modules/', '<rootDir>/bin/'],
+  preset: 'ts-jest',
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+  testMatch: ['<rootDir>/tests/**/*.(test|spect).(ts|js)'],
   collectCoverage: true,
   coverageDirectory: '<rootDir>/.coverage/',
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest',
+    '^.+\\.[tj]sx?$': ['ts-jest', { useESM: true }],
   },
   clearMocks: true,
   testEnvironment: 'node',
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/bin/'],
+  extensionsToTreatAsEsm: ['.ts'],
 }

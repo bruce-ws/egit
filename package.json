@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "rollup -cw",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "preview": "node build/index.js --preview",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
@@ -34,6 +34,7 @@
   "author": "bruce",
   "license": "ISC",
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",

@@ -12,7 +12,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"],
     },
     // "declaration": true,// 是否生成声明文件
     // "declarationDir": "dist/type",// 声明文件打包的位置
@@ -23,7 +23,7 @@
       "scripthost"
     ]
   },
-  "include": ["src/**/*"], // 指定包含哪些文件进行编译
-  "exclude": ["node_modules", "**/*.spec.ts"] // 排除不需要编译的文件
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx"], // 指定包含哪些文件进行编译
+  "exclude": ["bin"] // 排除不需要编译的文件
 }
 
