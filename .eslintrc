@@ -17,6 +17,14 @@
     "es2022": true,
     "jest": true
   },
+  "overrides": [
+    {
+      "files": ["./tests/**/*"],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
   "plugins": ["@typescript-eslint", "prettier", "node"],
   "extends": [
     "plugin:@typescript-eslint/recommended",

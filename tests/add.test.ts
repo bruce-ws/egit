@@ -1,42 +1,41 @@
-import { execa } from 'execa'
-import AddCommad from '@/commands/add'
-import { jest } from '@jest/globals'
-
+import { jest, expect } from '@jest/globals'
+import AddCommand from '@/commands/add'
+import { execa } from 'execa' // 注意：在实际测试环境中，可能需要使用mock来替代真实执行git命令
 jest.mock('execa')
 
-describe('AddCommad', () => {
-  let addCommand: AddCommad
+describe('AddCommand', () => {
+  let addCommand: AddCommand
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    addCommand = new AddCommand({ files: [] })
   })
 
-  it('没有指定文件的时候调用git add', async () => {
-    addCommand = new AddCommad({})
-    await addCommand.execute()
+  it('应该是IGitCommand的一个实例', () => {
+    expect(addCommand).toBeInstanceOf(AddCommand)
+  })
 
+  it('当没有提供特定文件时，应该调用git add -A吗', async () => {
+    await addCommand.execute()
+    expect(execa).toHaveReturnedTimes(1)
     expect(execa).toHaveBeenCalledWith('git', ['add', '-A'])
   })
 
-  it('添加特定文件时候调用git add xxx', async () => {
-    const testFiles = ['test1.txt']
-    addCommand = new AddCommad({ files: testFiles })
-    await addCommand.execute()
-
-    expect(execa).toHaveBeenCalledWith('git', ['add', ...testFiles])
+  it('应该调用git添加指定的文件吗', async () => {
+    const files = ['file1.txt', 'file2.txt']
+    const commandWithFiles = new AddCommand({ files })
+    await commandWithFiles.execute()
+    expect(execa).toHaveBeenCalledWith('git', ['add', ...files])
   })
 
-  it('执行git add 处理错误  ', async () => {
-    const mockError = new Error('模拟git添加错误')
-    ;(execa as jest.MockedFunction<typeof execa>).mockRejectedValueOnce(mockError)
+  it('处理git add执行过程中的错误吗', async () => {
+    const originalError = console.error
+    console.error = jest.fn()
+    const errorMessage = 'Git add failed'
+    ;(execa as jest.Mock).mockRejectedValue(new Error(errorMessage) as never)
 
-    addCommand = new AddCommad({})
-
-    try {
-      await addCommand.execute()
-    } catch (error) {
-      expect(error).toBe(mockError)
-      expect(console.error).toHaveBeenCalledWith(`向暂存区添加更改时出错[git add]: ${mockError.message}`)
-    }
+    const addCmd = new AddCommand({ files: ['file.txt'] })
+    await expect(addCmd.execute()).rejects.toThrow(`${errorMessage}`)
+    expect(console.error).toHaveBeenCalledWith(`向暂存区添加更改时出错[git add]: ${errorMessage}`)
+    console.error = originalError
   })
 })

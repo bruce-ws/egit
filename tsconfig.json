@@ -6,6 +6,7 @@
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -21,9 +22,10 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
+    "types": ["jest", "node"],
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx"], // 指定包含哪些文件进行编译
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx", "tests/**/*.js"], // 指定包含哪些文件进行编译
   "exclude": ["bin"] // 排除不需要编译的文件
 }
 

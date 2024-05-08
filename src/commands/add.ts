@@ -5,7 +5,7 @@ interface IAddOptions {
   files?: string[]
 }
 class AddCommad implements IGitCommand {
-  private files: string[]
+  public files: string[]
 
   constructor(options: IAddOptions) {
     this.files = options.files || []
