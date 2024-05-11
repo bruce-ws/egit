@@ -41,6 +41,8 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
+    "@types/commander": "^2.12.2",
+    "@types/execa": "^2.0.0",
     "@types/inquirer": "^9.0.7",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.2",

@@ -36,6 +36,12 @@ importers:
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.14.0)
+      '@types/commander':
+        specifier: ^2.12.2
+        version: 2.12.2
+      '@types/execa':
+        specifier: ^2.0.0
+        version: 2.0.0
       '@types/inquirer':
         specifier: ^9.0.7
         version: 9.0.7
@@ -631,8 +637,16 @@ packages:
   '@types/babel__traverse@7.20.5':
     resolution: {integrity: sha512-WXCyOcRtH37HAUkpXhUduaxdm82b4GSlyTqajXviN4EfiuPgNYR109xMCKvpl6zPIpua0DGlMEDCq+g8EdoheQ==}
 
+  '@types/commander@2.12.2':
+    resolution: {integrity: sha512-0QEFiR8ljcHp9bAbWxecjVRuAMr16ivPiGOw6KFQBVrVd0RQIcM3xKdRisH2EDWgVWujiYtHwhSkSUoAAGzH7Q==}
+    deprecated: This is a stub types definition for commander (https://github.com/tj/commander.js). commander provides its own type definitions, so you don't need @types/commander installed!
+
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+
+  '@types/execa@2.0.0':
+    resolution: {integrity: sha512-aBnkJ0r3khaZkHzu9pDZeWXrDg1N/ZtDGRQkK+KIqNVvvTvW+URXMUHQQCQMYdb2GPrcwu9Fq6l9iiT+pirIbg==}
+    deprecated: This is a stub types definition. execa provides its own type definitions, so you do not need this installed.
 
   '@types/graceful-fs@4.1.9':
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
@@ -2977,7 +2991,15 @@ snapshots:
     dependencies:
       '@babel/types': 7.24.0
 
+  '@types/commander@2.12.2':
+    dependencies:
+      commander: 12.0.0
+
   '@types/estree@1.0.5': {}
+
+  '@types/execa@2.0.0':
+    dependencies:
+      execa: 8.0.1
 
   '@types/graceful-fs@4.1.9':
     dependencies:

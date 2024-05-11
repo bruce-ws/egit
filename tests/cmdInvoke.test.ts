@@ -10,6 +10,6 @@ describe('GitInvoker', () => {
 
   it('registers all commands correctly', () => {
     // console.log((invoker as any).commands)
-    expect((invoker as any).commands.size).toBe(6)
+    expect((invoker as any).commands.size).toBe(7)
   })
 })
