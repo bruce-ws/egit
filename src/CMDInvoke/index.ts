@@ -7,6 +7,7 @@ import CheckoutCommand from '@/commands/checkout'
 import PullCommand from '@/commands/pull'
 import RebaseCommand from '@/commands/rebase'
 import StatusCommand from '@/commands/status'
+import BranchCommand from '@/commands/branch'
 
 type GitCommandConstructor = new (...args: any[]) => IGitCommand
 
@@ -15,7 +16,15 @@ class GitInvoker implements ICMDInvoke {
   constructor() {
     this.commands = new Map()
     // 所有命令
-    this.registerCommands([CommitCommand, AddCommand, CheckoutCommand, PullCommand, RebaseCommand, StatusCommand])
+    this.registerCommands([
+      CommitCommand,
+      AddCommand,
+      CheckoutCommand,
+      PullCommand,
+      RebaseCommand,
+      StatusCommand,
+      BranchCommand,
+    ])
   }
 
   // 使用定义的类型别名来约束commandClasses参数，存储构造函数而不是实例
