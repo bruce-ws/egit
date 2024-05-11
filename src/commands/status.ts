@@ -1,7 +1,7 @@
 import { execa } from 'execa'
 import { type IGitCommand } from '@/type'
 
-class StatusCommad implements IGitCommand {
+class StatusCommand implements IGitCommand {
   async execute(): Promise<void> {
     try {
       await execa('git', ['status'])
@@ -12,4 +12,4 @@ class StatusCommad implements IGitCommand {
   }
 }
 
-export default StatusCommad
+export default StatusCommand

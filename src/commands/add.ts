@@ -4,7 +4,7 @@ import { type IGitCommand } from '@/type'
 interface IAddOptions {
   files?: string[]
 }
-class AddCommad implements IGitCommand {
+class AddCommand implements IGitCommand {
   public files: string[]
 
   constructor(options: IAddOptions) {
@@ -22,4 +22,4 @@ class AddCommad implements IGitCommand {
   }
 }
 
-export default AddCommad
+export default AddCommand
