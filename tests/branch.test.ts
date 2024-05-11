@@ -18,7 +18,7 @@ describe('BranchCommand', () => {
     })
 
     it('基于某个分支创建新分支', async () => {
-      const options: ICreateBranchOptions = { branchName: 'feature-branch', startPoint: 'main' }
+      const options: ICreateBranchOptions = { branchName: 'feature-branch', fromBranch: 'main' }
       await branchCmd.execute(options)
       expect(execa).toHaveBeenCalledWith('git', ['branch', 'feature-branch', 'main'])
     })

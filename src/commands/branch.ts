@@ -7,7 +7,7 @@ class BranchCommand implements IGitCommand<ICreateBranchOptions | IDeleteBranchO
       if (options) {
         switch (true) {
           case 'branchName' in options: // 共享属性检查
-            if ('startPoint' in options) {
+            if ('formBranch' in options) {
               // 指明原始分支的创建
               await this.createBranch(options as ICreateBranchOptions)
             } else if ('force' in options) {
@@ -37,7 +37,7 @@ class BranchCommand implements IGitCommand<ICreateBranchOptions | IDeleteBranchO
   }
 
   private async createBranch(options: ICreateBranchOptions): Promise<void> {
-    await execa('git', ['branch', options.branchName, ...(options.startPoint ? [options.startPoint] : [])])
+    await execa('git', ['branch', options.branchName, ...(options.formBranch ? [options.formBranch] : [])])
   }
 
   private async deleteBranch(options: IDeleteBranchOptions): Promise<void> {

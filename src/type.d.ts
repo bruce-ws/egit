@@ -11,7 +11,7 @@ export interface IGitCommand<T = any> {
  */
 export interface ICreateBranchOptions {
   branchName: string
-  startPoint?: string
+  fromBranch?: string
 }
 /**
  * 删除分支options
