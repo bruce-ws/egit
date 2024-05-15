@@ -28,39 +28,64 @@ $ egit cm
   eg:   feat: 提交新功能commit msg
 
   > 询问是否需要push 到远程分支 [y/n]
-  > y : egit push
+  > y : git push
 
 ```
 ```
 $ egit push
-  > 自动执行 git pull --rebase [当前分支变基]
+  > 自动执行 git pull
   > 检测是否有冲突
   > 如果有冲突 则 拦下当前处理 修复
   ------  如果有冲突 修复完成
-    > $ egit deal clash
+    > $ egit cm
   ------ 
   > 如果没冲突 则 git push
 ```
-```
-$ egit rebase2 xxx
-  > 执行变基
-  > 例如 当前分支为 feat/a 
-  > 执行 egit rebase2 release/dev
-  > 逻辑执行 git checkout release/dev
-  > 逻辑执行 git pull --rebase
-  > 逻辑执行 git rebase feat/a
 
-  > 检测有没有冲突 
+```
+$ egit rebase 公共分支
+  > 执行变基【在自己的开发分支处理变基，从最新[远端]公共分支拉取】
+  > 注：强烈建议不要在公共分支上使用rebase,
+  > 例如：当前分支为feat/v1.2.0-01
+  > 执行 egit rebase feat/v1.2.0 [把当前分支变基到公共分支 feat/v1.2.0]
+  > 逻辑处理【不明确地方：feat/v1.2.0 是否已经是最新状态】
+  > 因上述不明确原因: 先同步远端feat/v1.2.0分支到本地的feat/v1.2.0分支到本地
+    ---- 所有要先同步一下公共分支上的代码
+      > $ git fetch origin feat/v1.2.0
+    ----
+  > 此时可以 执行
+    ---- rebase
+      > $ git rebase feat/v1.2.0
+    or> $ git rebase origin/feat/v1.2.0
+    ----
+  > 在当前的feat/v1.2.0-01分支检查冲突
   > 如果有冲突 则 拦下当前处理 修复   
-  ------  如果有冲突
-    > $ egit deal clash
-  ------ 
+    ------  如果有冲突
+      > $ egit deal clash
+    ------ 
 
   > 如果没有冲突直接执行下面逻辑
-  > 当前分支 release/dev
-  > 执行逻辑 git push
-  > 逻辑执行 再自动切回到feat/a分支 方便合并到其他分支
+  > 开始询问 是否要执行合并操作【此操作默认认定是合并到当前指定的公共分支】
+  > 如果“是” 则开始执行 【注：此操作执行的是merge操作】
+  > 切换分支到 feat/v1.2.0
+    ---- checkout
+      > $ git checkout feat/v1.2.0
+      > $ git pull 再次拉取远端分支代码
+      > $ git merge feat/v1.2.0-01
+    ----
+  > 如果上述merge有冲突则在当前工分支解决冲突
+  > 冲突解决完成之后  egit cm 走commit流程
+
+  > 如果没有冲突则执行下面逻辑
+
+  > 询问是否 push 到远端分支
+  > 如果“是”
+  > 开始push
+    ---- push
+      > $ egit push
+    ----
 ```
+
 ```
 $ egit ckb
   > 自动执行 git branch
