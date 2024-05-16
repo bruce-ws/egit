@@ -7,6 +7,7 @@ import PullCommand from '@/commands/pull'
 import RebaseCommand from '@/commands/rebase'
 import StatusCommand from '@/commands/status'
 import BranchCommand from '@/commands/branch'
+import PushCommand from '@/commands/push'
 
 type GitCommandConstructor = new (...args: any[]) => IGitCommand
 
@@ -23,6 +24,7 @@ class GitInvoker implements ICMDInvoke {
       RebaseCommand,
       StatusCommand,
       BranchCommand,
+      PushCommand,
     ])
   }
 
