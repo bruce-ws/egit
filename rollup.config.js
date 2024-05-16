@@ -16,13 +16,12 @@ export default {
     resolve(),
     commonjs(),
     terser({
-      // 禁用名称混淆
       mangle: false,
     }),
     typescript({
       tsconfig: './tsconfig.json',
       clean: true,
-      useTsconfigDeclarationDir: true,
+      // useTsconfigDeclarationDir: true,
     }),
     JSON(),
     alias({
