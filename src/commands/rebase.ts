@@ -26,7 +26,7 @@ class RebaseCommand implements IGitCommand {
     }
   }
 
-  async execute(): Promise<void> {
+  async execute() {
     this.validateOptions()
 
     let args: string[] = []
@@ -40,7 +40,7 @@ class RebaseCommand implements IGitCommand {
     }
 
     try {
-      await execa('git', args)
+      return await execa('git', args)
     } catch (error: unknown) {
       if (error instanceof Error) {
         let errorMessage = '执行rebase时出错:'

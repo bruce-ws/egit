@@ -8,9 +8,9 @@ class CheckoutCommand implements IGitCommand {
     this.branchOrCommit = branchOrCommit
   }
 
-  async execute(): Promise<void> {
+  async execute() {
     try {
-      await execa('git', ['checkout', this.branchOrCommit])
+      return await execa('git', ['checkout', this.branchOrCommit])
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(`切换分支或恢复操作出错[git checkout: ${this.branchOrCommit}] ${error.message}`)

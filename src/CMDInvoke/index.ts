@@ -34,7 +34,7 @@ class GitInvoker implements ICMDInvoke {
     }
   }
 
-  async executeCmd(commandName: string, args: any): Promise<void> {
+  async executeCmd(commandName: string, args: any) {
     const CommandClass = this.commands.get(commandName)
     if (!CommandClass) {
       console.warn(`未知的Git命令: ${commandName}`)
@@ -43,10 +43,9 @@ class GitInvoker implements ICMDInvoke {
 
     try {
       const commandInstance = new CommandClass(args)
-      await commandInstance.execute()
-      console.log(`${commandName} 命令执行成功`)
+      return await commandInstance.execute()
     } catch (error) {
-      console.error(`${commandName} 命令执行时出错:`, error)
+      //
     }
   }
 }

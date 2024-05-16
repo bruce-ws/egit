@@ -1,4 +1,4 @@
-import { execa } from 'execa'
+import { execa, type ExecaReturnValue } from 'execa'
 import { type IGitCommand } from '@/type'
 
 interface IAddOptions {
@@ -11,10 +11,10 @@ class AddCommand implements IGitCommand {
     this.files = options.files || []
   }
 
-  async execute(): Promise<void> {
+  async execute(): Promise<ExecaReturnValue<string>> {
     try {
       const args = this.files.length > 0 ? this.files : ['-A']
-      await execa('git', ['add', ...args])
+      return await execa('git', ['add', ...args])
     } catch (error: unknown) {
       if (error instanceof Error) console.error(`向暂存区添加更改时出错[git add]: ${error.message}`)
       throw error

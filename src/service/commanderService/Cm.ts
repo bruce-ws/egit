@@ -11,10 +11,14 @@ export default class CmCommand {
       .action(async (message) => {
         const cmType = await InquirerService.select('选择提交类型:', COMMITTYPE)
         const gitInvoker = new GitInvoker()
-        await gitInvoker.executeCmd('add', {})
-        await gitInvoker.executeCmd('commit', {
+        const _addInfo = await gitInvoker.executeCmd('add', {})
+        if (_addInfo?.failed) return
+        const cmInfo = await gitInvoker.executeCmd('commit', {
           msg: cmType + message,
         })
+        console.log(cmInfo, 'cm-info-----')
+        // const choosePush = await InquirerService.confirm('是否推送到远端分支?', true)
+        // console.log(choosePush, '选择推送---')
       })
     return command
   }

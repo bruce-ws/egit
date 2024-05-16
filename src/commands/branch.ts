@@ -1,32 +1,30 @@
-import { execa } from 'execa'
+import { execa, type ExecaReturnValue } from 'execa'
 import { IGitCommand, ICreateBranchOptions, IDeleteBranchOptions, IViewLocalBranchOptions } from '@/type'
 
 class BranchCommand implements IGitCommand<ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions> {
-  async execute(options?: ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions): Promise<void> {
+  async execute(options?: ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions) {
     try {
       if (options) {
         switch (true) {
           case 'branchName' in options: // 共享属性检查
             if ('fromBranch' in options) {
               // 指明原始分支的创建
-              await this.createBranch(options as ICreateBranchOptions)
+              return await this.createBranch(options as ICreateBranchOptions)
             } else if ('force' in options) {
               // 删除分支
-              await this.deleteBranch(options as IDeleteBranchOptions)
+              return await this.deleteBranch(options as IDeleteBranchOptions)
             } else {
               // 基于默认分支的创建
-              await this.createBranch(options as ICreateBranchOptions)
+              return await this.createBranch(options as ICreateBranchOptions)
             }
-            break
           case 'all' in options:
-            await this.viewBranch(options as IViewLocalBranchOptions)
-            break
+            return await this.viewBranch(options as IViewLocalBranchOptions)
           default:
-            await this.viewBranch({ all: false })
+            return await this.viewBranch({ all: false })
         }
       } else {
         // 默认为查看当前本地分支
-        await this.viewBranch({ all: false })
+        return await this.viewBranch({ all: false })
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -36,18 +34,18 @@ class BranchCommand implements IGitCommand<ICreateBranchOptions | IDeleteBranchO
     }
   }
 
-  private async createBranch(options: ICreateBranchOptions): Promise<void> {
-    await execa('git', ['branch', options.branchName, ...(options.fromBranch ? [options.fromBranch] : [])])
+  private async createBranch(options: ICreateBranchOptions): Promise<ExecaReturnValue<string>> {
+    return await execa('git', ['branch', options.branchName, ...(options.fromBranch ? [options.fromBranch] : [])])
   }
 
-  private async deleteBranch(options: IDeleteBranchOptions): Promise<void> {
+  private async deleteBranch(options: IDeleteBranchOptions): Promise<ExecaReturnValue<string>> {
     const args = options.force ? ['-D'] : ['-d']
-    await execa('git', ['branch', ...args, options.branchName])
+    return await execa('git', ['branch', ...args, options.branchName])
   }
 
-  private async viewBranch(options: IViewLocalBranchOptions = { all: false }): Promise<void> {
+  private async viewBranch(options: IViewLocalBranchOptions = { all: false }): Promise<ExecaReturnValue<string>> {
     const args = options.all ? ['-a'] : []
-    await execa('git', ['branch', ...args])
+    return await execa('git', ['branch', ...args])
   }
 }
 

@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { type ExecaReturnValue } from 'execa'
 /**
  * 抽象命令class
  */
 export interface IGitCommand<T = any> {
-  execute: (options?: T) => Promise<void>
+  execute: (options?: T) => Promise<ExecaReturnValue<string>>
   // undo?(): Promise<void> // 可选的撤销操作
 }
 /**
@@ -33,5 +34,5 @@ export interface ICMDInvoke {
   /**
    * 命令集合
    */
-  executeCmd: (commandName: string, options: any) => Promise<void>
+  executeCmd: (commandName: string, options: any) => Promise<ExecaReturnValue<string> | undefined>
 }
