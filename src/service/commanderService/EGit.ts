@@ -1,7 +1,7 @@
 // egit.ts
 import { Command } from 'commander'
-import CmCommand from './Cm'
-import PushCommand from './Push'
+import CMCommand from './Cm'
+import PUSHCommand from './Push'
 export class Egit {
   private program: Command
 
@@ -19,8 +19,8 @@ export class Egit {
   }
 
   private configureCommands(): void {
-    this.program.addCommand(new CmCommand().createCommand())
-    this.program.addCommand(new PushCommand().createCommand())
+    this.program.addCommand(new CMCommand().createCommand())
+    this.program.addCommand(new PUSHCommand().createCommand())
   }
 }
 export default Egit

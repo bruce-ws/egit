@@ -22,7 +22,7 @@ export default class CMCommand {
         if (choosePush) {
           await gitInvoker.executeCmd('push', {})
         } else {
-          console.log('哈哈哈哈哈---')
+          console.log('未推送到远端仓库，请自行推送')
         }
       })
     return command
