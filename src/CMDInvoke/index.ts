@@ -32,7 +32,6 @@ class GitInvoker implements ICMDInvoke {
   private registerCommands(commandClasses: GitCommandConstructor[]): void {
     for (const CommandClass of commandClasses) {
       const commandName = CommandClass.name?.replace('Command', '')?.toLowerCase()
-      console.log(commandName, 'wangshuai-')
       this.commands.set(commandName, CommandClass)
     }
   }
