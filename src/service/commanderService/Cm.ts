@@ -14,12 +14,12 @@ export default class CmCommand {
         const gitInvoker = new GitInvoker()
         const _addInfo = await gitInvoker.executeCmd('add', {})
         if (!_addInfo || !checkExecaInfoNoError(_addInfo)) return
-        const cmInfo = await gitInvoker.executeCmd('commit', {
+        const _cmInfo = await gitInvoker.executeCmd('commit', {
           msg: cmType + message,
         })
-        console.log(cmInfo, 'cm-info-----')
-        // const choosePush = await InquirerService.confirm('是否推送到远端分支?', true)
-        // console.log(choosePush, '选择推送---')
+        if (!_cmInfo || !checkExecaInfoNoError(_cmInfo)) return
+        const choosePush = await InquirerService.confirm('是否推送到远端分支?', true)
+        console.log(choosePush, '选择推送---')
       })
     return command
   }
