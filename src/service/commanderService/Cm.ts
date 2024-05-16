@@ -22,7 +22,7 @@ export default class CmCommand {
         if (choosePush) {
           await gitInvoker.executeCmd('push', {})
         } else {
-          console.log('哈哈哈哈哈----')
+          console.log('哈哈哈哈哈---')
         }
       })
     return command
