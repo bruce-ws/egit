@@ -3,6 +3,7 @@ import { Command } from 'commander'
 import { COMMITTYPE } from '@/utils/configData'
 import InquirerService from '@/service/inquirerService'
 import GitInvoker from '@/CMDInvoke/index'
+import { checkExecaInfoNoError } from '@/utils/index'
 export default class CmCommand {
   createCommand(): Command {
     const command = new Command('cm')
@@ -12,7 +13,7 @@ export default class CmCommand {
         const cmType = await InquirerService.select('选择提交类型:', COMMITTYPE)
         const gitInvoker = new GitInvoker()
         const _addInfo = await gitInvoker.executeCmd('add', {})
-        if (_addInfo?.failed) return
+        if (!_addInfo || !checkExecaInfoNoError(_addInfo)) return
         const cmInfo = await gitInvoker.executeCmd('commit', {
           msg: cmType + message,
         })
