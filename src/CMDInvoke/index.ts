@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// gitInvoker.ts
 import { IGitCommand, ICMDInvoke } from '@/type'
 import CommitCommand from '@/commands/commit'
 import AddCommand from '@/commands/add'

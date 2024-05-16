@@ -7,11 +7,14 @@ interface Question {
   message: string
   default?: any
   // 基于问题类型的任何其他有效类型
-  choices?: string[]
+  choices?: string[] | IChoice[]
   validate?: (input: any) => boolean | string
 }
-
-export class InquirerService {
+interface IChoice {
+  name: string
+  value: string
+}
+export default class InquirerService {
   /**
    * 用一组问题提示用户并返回答案。
    * @param questions 提示用户的问题数据 Array<Question>
@@ -41,7 +44,7 @@ export class InquirerService {
    * @param message 问题描述.
    * @param choices 选择列表.
    */
-  public static async select(message: string, choices: string[]): Promise<string> {
+  public static async select(message: string, choices: string[] | IChoice[]): Promise<string> {
     const answer = await this.prompt([{ type: 'list', name: 'result', message, choices }])
     return answer.result
   }

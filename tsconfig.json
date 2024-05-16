@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "es6",
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
@@ -11,11 +11,14 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    // 确保这一项是true来保留类名等元数据
+    "declaration": true,
+    // 可选，但有助于调试
+    "preserveConstEnums": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
     },
-    // "declaration": true,// 是否生成声明文件
     // "declarationDir": "dist/type",// 声明文件打包的位置
     "lib": [
       "esnext",

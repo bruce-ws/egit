@@ -15,7 +15,10 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    terser(),
+    terser({
+      // 禁用名称混淆
+      mangle: false,
+    }),
     typescript({
       tsconfig: './tsconfig.json',
       clean: true,
