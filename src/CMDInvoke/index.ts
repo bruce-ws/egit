@@ -7,7 +7,7 @@ import PullCommand from '@/commands/pull'
 import RebaseCommand from '@/commands/rebase'
 import StatusCommand from '@/commands/status'
 import BranchCommand from '@/commands/branch'
-import PushCommandd from '@/commands/push'
+import PushCommand from '@/commands/push'
 
 type GitCommandConstructor = new (...args: any[]) => IGitCommand
 
@@ -24,7 +24,7 @@ class GitInvoker implements ICMDInvoke {
       RebaseCommand,
       StatusCommand,
       BranchCommand,
-      PushCommandd,
+      PushCommand,
     ])
   }
 
@@ -32,7 +32,7 @@ class GitInvoker implements ICMDInvoke {
   private registerCommands(commandClasses: GitCommandConstructor[]): void {
     for (const CommandClass of commandClasses) {
       const commandName = CommandClass.name?.replace('Command', '')?.toLowerCase()
-      console.log(commandClasses, 'wangshuai-')
+      console.log(commandName, 'wangshuai-')
       this.commands.set(commandName, CommandClass)
     }
   }
