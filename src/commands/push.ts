@@ -1,7 +1,7 @@
 import { execa } from 'execa'
 import { type IGitCommand } from '@/type'
 
-class PushCommand implements IGitCommand {
+class PCommand implements IGitCommand {
   async execute() {
     try {
       return await execa('git', ['push'])
@@ -12,4 +12,4 @@ class PushCommand implements IGitCommand {
   }
 }
 
-export default PushCommand
+export default PCommand
