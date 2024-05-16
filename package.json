@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "rollup -c --watch --analyze",
+    "dev": "rollup -c --watch",
     "test": "jest",
     "preview": "node build/index.js --preview",
     "lint": "eslint .",

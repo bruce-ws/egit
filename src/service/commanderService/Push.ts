@@ -1,6 +1,6 @@
 import { Command } from 'commander'
 
-export class PushCommand {
+export class PUSHCommand {
   createCommand(): Command {
     return new Command('push').description('push').action(() => {
       console.log('push---')
@@ -8,4 +8,4 @@ export class PushCommand {
   }
 }
 
-export default PushCommand
+export default PUSHCommand

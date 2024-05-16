@@ -21,7 +21,7 @@ export default {
     typescript({
       tsconfig: './tsconfig.json',
       clean: true,
-      // useTsconfigDeclarationDir: true,
+      useTsconfigDeclarationDir: true,
     }),
     JSON(),
     alias({

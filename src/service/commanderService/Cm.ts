@@ -4,7 +4,7 @@ import { COMMITTYPE } from '@/utils/configData'
 import InquirerService from '@/service/inquirerService'
 import GitInvoker from '@/CMDInvoke/index'
 import { checkExecaInfoNoError } from '@/utils/index'
-export default class CmCommand {
+export default class CMCommand {
   public createCommand(): Command {
     const command = new Command('cm')
       .description('创建带有消息的提交Commit')
