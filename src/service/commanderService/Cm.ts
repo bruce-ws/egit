@@ -19,7 +19,7 @@ export default class CmCommand {
         })
         if (!_cmInfo || !checkExecaInfoNoError(_cmInfo)) return
         const choosePush = await InquirerService.confirm('是否推送到远端分支?', true)
-        console.log(choosePush, '选择推送---')
+        console.log(choosePush, '选择推送----')
       })
     return command
   }
