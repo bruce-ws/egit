@@ -2,12 +2,16 @@
 import { Command } from 'commander'
 import CMCommand from './Cm'
 import PUSHCommand from './Push'
+import { outputText } from '@/utils/index'
 export class Egit {
   private program: Command
 
   constructor() {
     this.program = new Command()
-    this.program.name('EGit').description('EGit，一个面向团队的git管理工具')
+    this.program
+      .name('EGit')
+      .description('EGit，一个面向团队的git管理工具')
+      .action(() => outputText())
   }
 
   public initialize(): void {
