@@ -3,7 +3,7 @@ import { Command } from 'commander'
 import { COMMITTYPE } from '@/utils/configData'
 import InquirerService from '@/service/inquirerService'
 import GitInvoker from '@/CMDInvoke/index'
-import { checkExecaInfoNoError } from '@/utils/index'
+import { checkExecaInfoNoError, outputRes } from '@/utils/index'
 export default class CMCommand {
   public createCommand(): Command {
     const command = new Command('cm')
@@ -14,13 +14,17 @@ export default class CMCommand {
         const gitInvoker = new GitInvoker()
         const _addInfo = await gitInvoker.executeCmd('add', {})
         if (!_addInfo || !checkExecaInfoNoError(_addInfo)) return
+        outputRes('[add] 添加文件成功，开始提交')
         const _cmInfo = await gitInvoker.executeCmd('commit', {
           msg: cmType + message,
         })
         if (!_cmInfo || !checkExecaInfoNoError(_cmInfo)) return
+        outputRes('[commit] 执行成功')
         const choosePush = await InquirerService.confirm('是否推送到远端分支?', true)
         if (choosePush) {
-          await gitInvoker.executeCmd('push', {})
+          const _pushRes = await gitInvoker.executeCmd('push', {})
+          if (!_pushRes || !checkExecaInfoNoError(_pushRes)) return
+          outputRes('[push] 推送成功')
         } else {
           console.log('未推送到远端仓库，请自行处理')
         }

@@ -20,3 +20,12 @@ export const outputText = () => {
   console.log(msg3('██      ██    ██  ██    ██    '))
   console.log(msg4('███████  ██████   ██    ██      \n'))
 }
+
+/**
+ * outputRes 输出命令反馈
+ * @msg 命令反馈
+ */
+export const outputRes = (msg: string, _color: number = 50) => {
+  const _colorText = clc.xterm(_color)
+  console.log(_colorText(msg))
+}
