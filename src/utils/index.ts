@@ -25,7 +25,7 @@ export const outputText = () => {
  * outputRes 输出命令反馈
  * @msg 命令反馈
  */
-export const outputRes = (msg: string, _color: number = 118) => {
+export const outputRes = (msg: string, _color: number = 118, isBr: boolean = true) => {
   const _colorText = clc.xterm(_color)
-  console.log(`\n${_colorText(msg)}\n`)
+  isBr ? console.log(`\n${_colorText(msg)}\n`) : console.log(`${_colorText(msg)}`)
 }
