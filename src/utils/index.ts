@@ -27,5 +27,5 @@ export const outputText = () => {
  */
 export const outputRes = (msg: string, _color: number = 50) => {
   const _colorText = clc.xterm(_color)
-  console.log(_colorText(msg))
+  console.log(`\n${_colorText(msg)}\n`)
 }

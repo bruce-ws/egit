@@ -14,17 +14,17 @@ export default class CMCommand {
         const gitInvoker = new GitInvoker()
         const _addInfo = await gitInvoker.executeCmd('add', {})
         if (!_addInfo || !checkExecaInfoNoError(_addInfo)) return
-        outputRes('[add] 添加文件成功，开始提交')
+        outputRes('[add] 文件添加至暂存区成功')
         const _cmInfo = await gitInvoker.executeCmd('commit', {
           msg: cmType + message,
         })
         if (!_cmInfo || !checkExecaInfoNoError(_cmInfo)) return
-        outputRes('[commit] 执行成功')
+        outputRes('[commit] 本地仓库提交信息成功')
         const choosePush = await InquirerService.confirm('是否推送到远端分支?', true)
         if (choosePush) {
           const _pushRes = await gitInvoker.executeCmd('push', {})
           if (!_pushRes || !checkExecaInfoNoError(_pushRes)) return
-          outputRes('[push] 推送成功')
+          outputRes('[push] 推送到远端仓库成功')
         } else {
           console.log('未推送到远端仓库，请自行处理')
         }
