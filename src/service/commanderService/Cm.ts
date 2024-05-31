@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // commit-command.ts
 import { Command } from 'commander'
 import { COMMITTYPE } from '@/utils/configData'
@@ -21,7 +20,7 @@ export default class CMCommand {
         })
         if (!_cmInfo || !checkExecaInfoNoError(_cmInfo)) return
         outputRes('[commit] 本地仓库提交信息成功')
-        const choosePush = await InquirerService.confirm(outputRes('是否推送到远端分支?', 89, false) as any, true)
+        const choosePush = await InquirerService.confirm('是否推送到远端分支?', true)
         if (choosePush) {
           const _pushRes = await gitInvoker.executeCmd('push', {})
           if (!_pushRes || !checkExecaInfoNoError(_pushRes)) return
