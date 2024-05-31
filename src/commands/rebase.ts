@@ -1,6 +1,6 @@
 import { execa } from 'execa'
 import { type IGitCommand } from '@/type'
-
+import { outputRes } from '@/utils/index'
 interface IRebaseOptions {
   branch?: string
   continue?: boolean
@@ -49,7 +49,7 @@ class RebaseCommand implements IGitCommand {
         else errorMessage += ` 到分支[${this.branch}]`
 
         errorMessage += ` [git ${args.join(' ')}]: ${error.message}`
-        console.error(errorMessage)
+        outputRes(errorMessage, 124)
       }
       throw error
     }

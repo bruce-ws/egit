@@ -1,5 +1,6 @@
 import { execa } from 'execa'
 import { type IGitCommand } from '@/type'
+import { outputRes } from '@/utils/index'
 
 interface IPullOptions {
   rebase?: boolean
@@ -18,7 +19,7 @@ class PullCommand implements IGitCommand {
       return await execa('git', ['pull', ...args])
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error(`拉取远程分支时出错[git pull]: ${error.message}`)
+        outputRes(`拉取远程分支时出错[git pull]: ${error.message}`, 124)
       }
       throw error
     }

@@ -1,6 +1,6 @@
 import { execa } from 'execa'
 import { type IGitCommand } from '@/type'
-
+import { outputRes } from '@/utils/index'
 class CheckoutCommand implements IGitCommand {
   private branchOrCommit: string
 
@@ -13,7 +13,7 @@ class CheckoutCommand implements IGitCommand {
       return await execa('git', ['checkout', this.branchOrCommit])
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error(`切换分支或恢复操作出错[git checkout: ${this.branchOrCommit}] ${error.message}`)
+        outputRes(`切换分支或恢复操作出错[git checkout: ${this.branchOrCommit}] ${error.message}`, 124)
       }
       throw error
     }

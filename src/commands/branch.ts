@@ -1,6 +1,6 @@
 import { execa, type ExecaReturnValue } from 'execa'
 import { IGitCommand, ICreateBranchOptions, IDeleteBranchOptions, IViewLocalBranchOptions } from '@/type'
-
+import { outputRes } from '@/utils/index'
 class BranchCommand implements IGitCommand<ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions> {
   async execute(options?: ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions) {
     try {
@@ -28,7 +28,7 @@ class BranchCommand implements IGitCommand<ICreateBranchOptions | IDeleteBranchO
       }
     } catch (error) {
       if (error instanceof Error) {
-        console.error(`执行Git分支命令时出错: ${error.message}`)
+        outputRes(`执行Git分支命令时出错: ${error.message}`, 124)
       }
       throw error
     }

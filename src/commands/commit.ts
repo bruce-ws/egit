@@ -1,6 +1,6 @@
 import { execa } from 'execa'
 import { type IGitCommand } from '@/type'
-
+import { outputRes } from '@/utils/index'
 interface ICommitOptions {
   msg: string
   files?: string[]
@@ -20,7 +20,7 @@ class CommitCommand implements IGitCommand {
       return await execa('git', ['commit', ...args])
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error(`提交更改时出错[git commit]: ${error.message}`)
+        outputRes(`提交更改时出错[git commit]: ${error.message}`, 124)
       }
       throw error
     }
