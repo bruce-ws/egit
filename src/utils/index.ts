@@ -27,5 +27,5 @@ export const outputText = () => {
  */
 export const outputRes = (msg: string, _color: number = 46, isBr: boolean = true) => {
   const _colorText = clc.xterm(_color)
-  isBr ? console.log(`\n${_colorText(msg)}\n`) : console.log(`${_colorText(msg)}`)
+  isBr ? console.log(`\n${_colorText(msg)}`) : console.log(`${_colorText(msg)}`)
 }
