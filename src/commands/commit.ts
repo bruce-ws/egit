@@ -7,8 +7,8 @@ interface ICommitOptions {
 }
 
 class CommitCommand implements IGitCommand {
-  public msg: string
-  public files: string[]
+  private msg: string
+  private files: string[]
   constructor(options: ICommitOptions) {
     this.msg = options.msg
     this.files = options.files || []

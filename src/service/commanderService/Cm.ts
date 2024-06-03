@@ -6,7 +6,8 @@ import GitInvoker from '@/CMDInvoke/index'
 import { checkExecaInfoNoError, outputRes } from '@/utils/index'
 export default class CMCommand {
   public createCommand(): Command {
-    const command = new Command('cm')
+    const command = new Command('commit')
+      .alias('cm')
       .description('创建带有消息的提交Commit')
       .argument('message', '提交信息')
       .action(async (message) => {

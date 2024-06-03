@@ -4,6 +4,7 @@ import CMCommand from './Cm'
 import PUSHCommand from './Push'
 import CKBCommand from './Ckb'
 import DelCommand from './Del'
+import RbCommand from './Rb'
 import { outputText } from '@/utils/index'
 export class Egit {
   private program: Command
@@ -12,7 +13,7 @@ export class Egit {
     this.program = new Command()
     this.program
       .name('EGit')
-      .description('EGit，一个面向团队的git管理工具')
+      .description('EGit，一个简易的git管理工具，拥抱敏捷开发')
       .action(() => outputText())
   }
 
@@ -29,6 +30,7 @@ export class Egit {
     this.program.addCommand(new PUSHCommand().createCommand())
     this.program.addCommand(new CKBCommand().createCommand())
     this.program.addCommand(new DelCommand().createCommand())
+    this.program.addCommand(new RbCommand().createCommand())
   }
 }
 export default Egit
