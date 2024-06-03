@@ -97,7 +97,22 @@ $ egit ckb
       release/prod
       ....
   > 逻辑执行 git checkout xxx分支
+
+$ egit ckb .
+  放弃所有更改
 ```
+
+```
+$ egit d branch 
+  > 删除分支
+  > 逻辑执行 git branch -d branch
+
+$ egit D branch
+  > 删除分支
+  > 逻辑执行 git branch -D branch
+```
+
+
 ```
 $ egit deal clash
   > 当分支 rebase冲突解决完毕时使用

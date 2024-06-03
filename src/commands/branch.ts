@@ -2,23 +2,27 @@ import { execa, type ExecaReturnValue } from 'execa'
 import { IGitCommand, ICreateBranchOptions, IDeleteBranchOptions, IViewLocalBranchOptions } from '@/type'
 import { outputRes } from '@/utils/index'
 class BranchCommand implements IGitCommand<ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions> {
-  async execute(options?: ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions) {
+  private options: ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions | undefined
+  constructor(optopns?: ICreateBranchOptions | IDeleteBranchOptions | IViewLocalBranchOptions) {
+    this.options = optopns
+  }
+  async execute() {
     try {
-      if (options) {
+      if (this.options) {
         switch (true) {
-          case 'branchName' in options: // 共享属性检查
-            if ('fromBranch' in options) {
+          case 'branchName' in this.options: // 共享属性检查
+            if ('fromBranch' in this.options) {
               // 指明原始分支的创建
-              return await this.createBranch(options as ICreateBranchOptions)
-            } else if ('force' in options) {
+              return await this.createBranch(this.options as ICreateBranchOptions)
+            } else if ('force' in this.options) {
               // 删除分支
-              return await this.deleteBranch(options as IDeleteBranchOptions)
+              return await this.deleteBranch(this.options as IDeleteBranchOptions)
             } else {
               // 基于默认分支的创建
-              return await this.createBranch(options as ICreateBranchOptions)
+              return await this.createBranch(this.options as ICreateBranchOptions)
             }
-          case 'all' in options:
-            return await this.viewBranch(options as IViewLocalBranchOptions)
+          case 'all' in this.options:
+            return await this.viewBranch(this.options as IViewLocalBranchOptions)
           default:
             return await this.viewBranch({ all: false })
         }

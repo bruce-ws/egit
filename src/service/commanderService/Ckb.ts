@@ -7,7 +7,6 @@ export class CKBCommand {
     return new Command('ckb').description('选择性切换分支').action(async () => {
       const gitInvoker = new GitInvoker()
       // 放弃所有修改
-      console.log(process.argv)
       if (process.argv.length === 4 && process.argv[3] === '.') {
         const checkoutInfo = await gitInvoker.executeCmd('checkout', '.')
         if (!checkoutInfo || !checkExecaInfoNoError(checkoutInfo)) return
