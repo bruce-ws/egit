@@ -17,7 +17,6 @@ export class CKBCommand {
           return
         }
         const _checkoutInfo = await gitInvoker.executeCmd('checkout', selectBranch.replaceAll(' ', ''))
-        console.log(_checkoutInfo, '_checkoutInfo')
         if (!_checkoutInfo || !checkExecaInfoNoError(_checkoutInfo)) return
       } else {
         outputRes('拉取分支失败', 124, false)
