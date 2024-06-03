@@ -17,7 +17,7 @@ export class CKBCommand {
           return
         }
         const _checkoutInfo = await gitInvoker.executeCmd('checkout', {
-          branch: selectBranch,
+          branch: selectBranch.replaceAll(' ', ''),
         })
         console.log(_checkoutInfo, '_checkoutInfo')
         if (!_checkoutInfo || !checkExecaInfoNoError(_checkoutInfo)) return
