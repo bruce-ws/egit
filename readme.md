@@ -116,4 +116,3 @@ $ egit deal clash
   > 如果仍然冲突则继续修复 然后 $ egit deal clash
   > 如果没有冲突则执行 git push完成提交
 ```
-test
