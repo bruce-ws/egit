@@ -103,15 +103,10 @@ $ egit ckb .
 ```
 
 ```
-$ egit d branch 
-  > 删除分支
-  > 逻辑执行 git branch -d branch
-
-$ egit D branch
-  > 删除分支
-  > 逻辑执行 git branch -D branch
+$ egit d branch
+  > 删除
+  > -f 强制删除
 ```
-
 
 ```
 $ egit deal clash
