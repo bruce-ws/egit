@@ -11,7 +11,7 @@ export class CKBCommand {
       if (process.argv.length === 4 && process.argv[3] === '.') {
         const checkoutInfo = await gitInvoker.executeCmd('checkout', '.')
         if (!checkoutInfo || !checkExecaInfoNoError(checkoutInfo)) return
-        outputRes(checkoutInfo.stderr, 46, false)
+        outputRes(checkoutInfo.stderr + ' — 放弃所有修改', 46, false)
         return
       }
 
