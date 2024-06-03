@@ -7,7 +7,7 @@ egit初版
 1. 解决git的commit规范问题
 2. 解决rebase分支管理问题
 3. 解决git checkout 分支问题【选项式】
-
+4. 以下是egit执行逻辑
 ```
 $ egit cm
 
@@ -55,8 +55,7 @@ $ egit rebase 公共分支
     ----
   > 此时可以 执行
     ---- rebase
-      > $ git rebase feat/v1.2.0
-    or> $ git rebase origin/feat/v1.2.0
+      > $ git rebase origin/feat/v1.2.0
     ----
   > 在当前的feat/v1.2.0-01分支检查冲突
   > 如果有冲突 则 拦下当前处理 修复   
