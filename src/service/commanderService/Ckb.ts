@@ -6,6 +6,13 @@ export class CKBCommand {
   createCommand(): Command {
     return new Command('ckb').description('选择性切换分支').action(async () => {
       const gitInvoker = new GitInvoker()
+      // 放弃所有修改
+      if (process.argv.length === 3 && process.argv[2] === '.') {
+        const checkoutInfo = await gitInvoker.executeCmd('checkout', '.')
+        if (!checkoutInfo || !checkExecaInfoNoError(checkoutInfo)) return
+        outputRes(checkoutInfo.stderr, 46, false)
+        return
+      }
       // 拉取分支【本地分支】
       const _branchInfo = await gitInvoker.executeCmd('branch', {})
       // 构建分支选取options
