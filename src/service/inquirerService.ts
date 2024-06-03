@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import inquirer from 'inquirer'
-
+import { outputRes } from '@/utils/index'
 interface Question {
   type?: string
   name: string
   message: string
   default?: any
+  loop?: boolean
   // 基于问题类型的任何其他有效类型
   choices?: string[] | IChoice[]
   validate?: (input: any) => boolean | string
@@ -24,7 +25,7 @@ export default class InquirerService {
       const answers = await inquirer.prompt(questions)
       return answers
     } catch (error) {
-      console.error('用户输入时出现错误:', error)
+      outputRes('用户输入时出现错误:' + error, 124)
       throw error
     }
   }
@@ -45,7 +46,15 @@ export default class InquirerService {
    * @param choices 选择列表.
    */
   public static async select(message: string, choices: string[] | IChoice[]): Promise<string> {
-    const answer = await this.prompt([{ type: 'list', name: 'result', message, choices }])
+    const answer = await this.prompt([
+      {
+        type: 'list',
+        name: 'result',
+        message,
+        choices,
+        loop: false,
+      },
+    ])
     return answer.result
   }
 }

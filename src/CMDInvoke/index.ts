@@ -8,6 +8,7 @@ import RebaseCommand from '@/commands/rebase'
 import StatusCommand from '@/commands/status'
 import BranchCommand from '@/commands/branch'
 import PushCommand from '@/commands/push'
+import { type ExecaReturnValue } from 'execa'
 
 type GitCommandConstructor = new (...args: any[]) => IGitCommand
 
@@ -45,7 +46,7 @@ class GitInvoker implements ICMDInvoke {
 
     try {
       const commandInstance = new CommandClass(args)
-      return await commandInstance.execute()
+      return (await commandInstance.execute()) as ExecaReturnValue
     } catch (error) {
       //
     }

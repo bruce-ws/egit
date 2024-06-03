@@ -2,6 +2,7 @@
 import { Command } from 'commander'
 import CMCommand from './Cm'
 import PUSHCommand from './Push'
+import CKBCommand from './Ckb'
 import { outputText } from '@/utils/index'
 export class Egit {
   private program: Command
@@ -25,6 +26,7 @@ export class Egit {
   private configureCommands(): void {
     this.program.addCommand(new CMCommand().createCommand())
     this.program.addCommand(new PUSHCommand().createCommand())
+    this.program.addCommand(new CKBCommand().createCommand())
   }
 }
 export default Egit

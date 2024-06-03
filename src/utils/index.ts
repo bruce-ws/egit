@@ -29,3 +29,16 @@ export const outputRes = (msg: string, _color: number = 46, isBr: boolean = true
   const _colorText = clc.xterm(_color)
   isBr ? console.log(`${_colorText(msg)}\n`) : console.log(`${_colorText(msg)}`)
 }
+
+/**
+ * 构建分支选取
+ */
+export const buildBranchOptions = (branch: string) => {
+  const branchs = branch.split('\n')
+  return branchs.map((item: string) => {
+    return {
+      name: item,
+      value: item,
+    }
+  })
+}
