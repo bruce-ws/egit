@@ -16,9 +16,7 @@ export class CKBCommand {
           outputRes(`已在当前分支 ${selectBranch}`, 120, false)
           return
         }
-        const _checkoutInfo = await gitInvoker.executeCmd('checkout', {
-          branch: selectBranch.replaceAll(' ', ''),
-        })
+        const _checkoutInfo = await gitInvoker.executeCmd('checkout', selectBranch.replaceAll(' ', ''))
         console.log(_checkoutInfo, '_checkoutInfo')
         if (!_checkoutInfo || !checkExecaInfoNoError(_checkoutInfo)) return
       } else {
