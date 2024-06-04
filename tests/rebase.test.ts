@@ -1,7 +1,10 @@
 import RebaseCommand from '@/commands/rebase'
 import { execa } from 'execa'
 import { IGitCommand } from '@/type' // 确保类型导出路径正确
-
+import { outputRes as mockOutputRes } from '@/utils/index'
+jest.mock('@/utils/index', () => ({
+  outputRes: jest.fn(), // mock outputRes函数
+}))
 jest.mock('execa') // 使用 Jest 的 mock 功能来避免实际执行 git 命令
 
 describe('RebaseCommand', () => {
@@ -57,8 +60,10 @@ describe('RebaseCommand', () => {
     const rebaseCmd = new RebaseCommand(continueOptions)
 
     await expect(rebaseCmd.execute()).rejects.toThrow('Mocked Git Error')
-
-    expect(console.error).toHaveBeenCalledWith('执行rebase时出错: 继续rebase [git rebase --continue]: Mocked Git Error')
+    expect(mockOutputRes).toHaveBeenCalledWith(
+      '执行rebase时出错: 继续rebase [git rebase --continue]: Mocked Git Error',
+      124,
+    )
     console.error = originalError
   })
 })

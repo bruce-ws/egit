@@ -1,8 +1,11 @@
 import { jest, expect } from '@jest/globals'
 import StatusCommad from '@/commands/status'
 import { execa } from 'execa' // 注意：在实际测试环境中，可能需要使用mock来替代真实执行git命令
+import { outputRes as mockOutputRes } from '@/utils/index'
 jest.mock('execa')
-
+jest.mock('@/utils/index', () => ({
+  outputRes: jest.fn(), // mock outputRes函数
+}))
 describe('StatusCommad', () => {
   let statusCommad: StatusCommad
 
@@ -22,7 +25,7 @@ describe('StatusCommad', () => {
 
     const addCmd = new StatusCommad()
     await expect(addCmd.execute()).rejects.toThrow(`${errorMessage}`)
-    expect(console.error).toHaveBeenCalledWith(`状态查询出错[git status]: ${errorMessage}`)
+    expect(mockOutputRes).toHaveBeenCalledWith(`状态查询出错[git status]: ${errorMessage}`, 124)
     console.error = originalError
   })
 })

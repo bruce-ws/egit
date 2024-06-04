@@ -1,8 +1,11 @@
 import { jest, expect } from '@jest/globals'
 import CommitCommand from '@/commands/commit'
 import { execa } from 'execa' // 注意：在实际测试环境中，可能需要使用mock来替代真实执行git命令
+import { outputRes as mockOutputRes } from '@/utils/index'
 jest.mock('execa')
-
+jest.mock('@/utils/index', () => ({
+  outputRes: jest.fn(), // mock outputRes函数
+}))
 describe('AddCommand', () => {
   let commitCommand: CommitCommand
 
@@ -36,7 +39,7 @@ describe('AddCommand', () => {
 
     const addCmd = new CommitCommand({ files: ['file.txt'], msg: '错误' })
     await expect(addCmd.execute()).rejects.toThrow(`${errorMessage}`)
-    expect(console.error).toHaveBeenCalledWith(`提交更改时出错[git commit]: ${errorMessage}`)
+    expect(mockOutputRes).toHaveBeenCalledWith(`提交更改时出错[git commit]: ${errorMessage}`, 124)
     console.error = originalError
   })
 })

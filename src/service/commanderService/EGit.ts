@@ -5,7 +5,7 @@ import PUSHCommand from './Push'
 import CKBCommand from './Ckb'
 import DelCommand from './Del'
 import RbCommand from './Rb'
-import { outputText } from '@/utils/index'
+import { outputText, outputRes } from '@/utils/index'
 export class Egit {
   private program: Command
 
@@ -14,7 +14,14 @@ export class Egit {
     this.program
       .name('EGit')
       .description('EGit，一个简易的git管理工具，拥抱敏捷开发')
-      .action(() => outputText())
+      .option('-v', '1.0.0')
+      .action((options) => {
+        if (options.v) {
+          outputRes(`EGit version：${'1.0.0'}`, 91, false)
+        } else {
+          outputText()
+        }
+      })
   }
 
   public initialize(): void {
