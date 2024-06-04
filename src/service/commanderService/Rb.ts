@@ -21,7 +21,7 @@ export class RbCommand {
           branch: `origin/${branchName}`,
         })
         if (!_rebaseInfo || !checkExecaInfoNoError(_rebaseInfo)) return
-        console.log(_rebaseInfo, 'rebase-info')
+        console.log(_rebaseInfo, 'rebase------info')
       })
   }
 }
