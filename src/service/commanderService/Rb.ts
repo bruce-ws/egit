@@ -20,6 +20,7 @@ export class RbCommand {
         const _rebaseInfo = await gitInvoker.executeCmd('rebase', {
           branch: `origin/${branchName}`,
         })
+        if (!_rebaseInfo || !checkExecaInfoNoError(_rebaseInfo)) return
         console.log(_rebaseInfo, 'rebase------info')
       })
   }
