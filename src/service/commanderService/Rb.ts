@@ -10,7 +10,7 @@ export class RbCommand {
       .action(async (branchName: string) => {
         const gitInvoker = new GitInvoker()
         // 1：拉取远端最新代码
-        outputRes(`开始拉取 ${branchName} 分支远端最新代码`, 51)
+        outputRes(`开始拉取 ${branchName} 分支远端最新代码到本地[注：此分支只拉取不合并]`, 51)
         const _fetchInfo = await gitInvoker.executeCmd('fetch', {
           branch: branchName,
         })
@@ -21,7 +21,7 @@ export class RbCommand {
           branch: `origin/${branchName}`,
         })
         if (!_rebaseInfo || !checkExecaInfoNoError(_rebaseInfo)) return
-        console.log(_rebaseInfo, 'rebase------info')
+        outputRes(`变基成功`, 51)
       })
   }
 }

@@ -5,6 +5,7 @@ import PUSHCommand from './Push'
 import CKBCommand from './Ckb'
 import DelCommand from './Del'
 import RbCommand from './Rb'
+import MrCommand from './Mg'
 import { outputText, outputRes } from '@/utils/index'
 export class Egit {
   private program: Command
@@ -38,6 +39,7 @@ export class Egit {
     this.program.addCommand(new CKBCommand().createCommand())
     this.program.addCommand(new DelCommand().createCommand())
     this.program.addCommand(new RbCommand().createCommand())
+    this.program.addCommand(new MrCommand().createCommand())
   }
 }
 export default Egit

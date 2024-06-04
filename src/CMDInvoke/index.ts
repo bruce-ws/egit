@@ -9,6 +9,8 @@ import StatusCommand from '@/commands/status'
 import BranchCommand from '@/commands/branch'
 import PushCommand from '@/commands/push'
 import FetchCommand from '@/commands/fetch'
+import MergeCommand from '@/commands/merge'
+import LogCommand from '@/commands/log'
 import { type ExecaReturnValue } from 'execa'
 
 type GitCommandConstructor = new (...args: any[]) => IGitCommand
@@ -28,6 +30,8 @@ class GitInvoker implements ICMDInvoke {
       BranchCommand,
       PushCommand,
       FetchCommand,
+      MergeCommand,
+      LogCommand,
     ])
   }
 
@@ -42,7 +46,7 @@ class GitInvoker implements ICMDInvoke {
   async executeCmd(commandName: string, args: any) {
     const CommandClass = this.commands.get(commandName)
     if (!CommandClass) {
-      console.warn(`未知的Git命令: ${commandName}`)
+      console.warn(`未知的EGit命令: ${commandName}`)
       return
     }
 
