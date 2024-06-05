@@ -9,3 +9,9 @@ export const COMMITTYPE = [
   { name: 'chore: 改变构建流程、或者增加依赖库、工具等', value: 'chore: ' },
   { name: 'revert: 版本回滚', value: 'revert:' },
 ]
+
+export const RabaseType = [
+  { name: 'continue：手动解决冲突后继续Rebase', value: '--continue' },
+  // { name: 'skip：手动解决冲突后跳过当前提交', value: '--skip' },
+  { name: 'abort：不执行Rebase，回到之前状态', value: '--abort' },
+]

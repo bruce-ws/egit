@@ -6,6 +6,7 @@ import CKBCommand from './Ckb'
 import DelCommand from './Del'
 import RbCommand from './Rb'
 import MrCommand from './Mg'
+import DrcCommand from './Drc'
 import { outputText, outputRes } from '@/utils/index'
 
 export class Egit {
@@ -19,7 +20,7 @@ export class Egit {
       .option('-v', '1.0.0')
       .action((options) => {
         if (options.v) {
-          outputRes(`EGit version：${'1.0.0'}`, 91, false)
+          outputRes(`\nEGit version：${'1.0.0'}`, 204)
         } else {
           outputText()
         }
@@ -41,6 +42,7 @@ export class Egit {
     this.program.addCommand(new DelCommand().createCommand())
     this.program.addCommand(new RbCommand().createCommand())
     this.program.addCommand(new MrCommand().createCommand())
+    this.program.addCommand(new DrcCommand().createCommand())
   }
 }
 export default Egit

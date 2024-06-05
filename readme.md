@@ -87,11 +87,11 @@ $ egit d branch
 ```
 
 ```
-$ egit deal clash
+$ egit deal-rebase-clash
   > 当分支 rebase冲突解决完毕时使用
   > 解决完冲突直接运行当前命令
   > 逻辑执行 git add .
   > 逻辑执行 git rebase --continue
-  > 如果仍然冲突则继续修复 然后 $ egit deal clash
+  > 如果仍然冲突则继续修复 然后 $ egit drc
   > 如果没有冲突则执行 git push完成提交
 ```
