@@ -7,6 +7,7 @@ import DelCommand from './Del'
 import RbCommand from './Rb'
 import MrCommand from './Mg'
 import { outputText, outputRes } from '@/utils/index'
+
 export class Egit {
   private program: Command
 
@@ -14,7 +15,7 @@ export class Egit {
     this.program = new Command()
     this.program
       .name('EGit')
-      .description('EGit，一个简易的git管理工具，拥抱敏捷开发')
+      .description('EGit，一个简易的git管理工具，拥抱敏捷开发😉')
       .option('-v', '1.0.0')
       .action((options) => {
         if (options.v) {
