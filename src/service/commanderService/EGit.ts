@@ -17,10 +17,10 @@ export class Egit {
     this.program
       .name('EGit')
       .description('EGit，一个简易的git管理工具，拥抱敏捷开发😉')
-      .option('-v', '1.0.1')
+      .option('-v', '1.0.2')
       .action((options) => {
         if (options.v) {
-          outputRes(`\nEGit version：${'1.0.1'}`, 204)
+          outputRes(`\nEGit version：${'1.0.2'}`, 204)
         } else {
           outputText()
         }
