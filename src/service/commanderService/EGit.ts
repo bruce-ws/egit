@@ -7,6 +7,7 @@ import DelCommand from './Del'
 import RbCommand from './Rb'
 import MrCommand from './Mg'
 import DrcCommand from './Drc'
+import PuCommand from './Pu'
 import { outputText, outputRes } from '@/utils/index'
 
 export class Egit {
@@ -43,6 +44,7 @@ export class Egit {
     this.program.addCommand(new RbCommand().createCommand())
     this.program.addCommand(new MrCommand().createCommand())
     this.program.addCommand(new DrcCommand().createCommand())
+    this.program.addCommand(new PuCommand().createCommand())
   }
 }
 export default Egit

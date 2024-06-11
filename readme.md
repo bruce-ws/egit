@@ -32,7 +32,7 @@ $ egit cm
 
 ```
 ```
-$ egit push
+$ egit push | ps
   > 自动执行 git pull
   > 检测是否有冲突
   > 如果有冲突 则 拦下当前处理 修复
@@ -40,6 +40,11 @@ $ egit push
     > $ egit cm
   ------ 
   > 如果没冲突 则 git push
+```
+
+```
+$ egit pull | pu
+  > 自动执行 git pull
 ```
 
 ```

@@ -1,7 +1,6 @@
 import { Command } from 'commander'
 import GitInvoker from '@/CMDInvoke/index'
-import InquirerService from '@/service/inquirerService'
-import { checkExecaInfoNoError, outputRes, buildBranchOptions } from '@/utils/index'
+import { checkExecaInfoNoError, outputRes, pullLocalBranch } from '@/utils/index'
 export class CKBCommand {
   createCommand(): Command {
     return new Command('checkout')
@@ -16,23 +15,14 @@ export class CKBCommand {
           outputRes(checkoutInfo.stderr + ' — 放弃所有修改', 46, false)
           return
         }
-
-        // 拉取分支【本地分支】
-        const _branchInfo = await gitInvoker.executeCmd('branch', {})
-        // 构建分支选取options
-        if (_branchInfo && checkExecaInfoNoError(_branchInfo)) {
-          const _branchs = buildBranchOptions(_branchInfo.stdout)
-          const selectBranch = await InquirerService.select('选择切换的分支:', _branchs)
-          if (selectBranch.includes('*')) {
-            outputRes(`已在当前分支 ${selectBranch}`, 120, false)
-            return
-          }
-          const _checkoutInfo = await gitInvoker.executeCmd('checkout', selectBranch.replaceAll(' ', ''))
-          if (!_checkoutInfo || !checkExecaInfoNoError(_checkoutInfo)) return
-          outputRes(_checkoutInfo.stderr, 46, false)
-        } else {
-          outputRes('拉取分支失败', 124, false)
+        const _branch = await pullLocalBranch('切换')
+        if (_branch.includes('*')) {
+          outputRes(`已在当前分支 ${_branch}`, 120, false)
+          return
         }
+        const _checkoutInfo = await gitInvoker.executeCmd('checkout', _branch.replaceAll(' ', ''))
+        if (!_checkoutInfo || !checkExecaInfoNoError(_checkoutInfo)) return
+        outputRes(_checkoutInfo.stderr, 46, false)
       })
   }
 }
