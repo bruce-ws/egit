@@ -1,5 +1,6 @@
 import { Command } from 'commander'
 import GitInvoker from '@/CMDInvoke/index'
+import InquirerService from '@/service/inquirerService'
 import { checkExecaInfoNoError, outputRes, pullLocalBranch } from '@/utils/index'
 export class CKBCommand {
   createCommand(): Command {
@@ -23,6 +24,14 @@ export class CKBCommand {
         const _checkoutInfo = await gitInvoker.executeCmd('checkout', _branch.replaceAll(' ', ''))
         if (!_checkoutInfo || !checkExecaInfoNoError(_checkoutInfo)) return
         outputRes(_checkoutInfo.stderr, 46, false)
+        const choosePull = await InquirerService.confirm('是否拉取当前远端最新代码?', true)
+        if (choosePull) {
+          const _pullInfo = await gitInvoker.executeCmd('pull', {})
+          if (!_pullInfo || !checkExecaInfoNoError(_pullInfo)) return
+          outputRes('[pull]拉取完成', 46, false)
+        } else {
+          outputRes('未拉取远端代码，请自行处理', 46, false)
+        }
       })
   }
 }

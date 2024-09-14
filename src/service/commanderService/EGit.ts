@@ -18,10 +18,10 @@ export class Egit {
     this.program
       .name('EGit')
       .description('EGit，一个简易的git管理工具，拥抱敏捷开发😉')
-      .option('-v', '1.0.3')
+      .option('-v', '1.0.4')
       .action((options) => {
         if (options.v) {
-          outputRes(`\nEGit version：${'1.0.3'}`, 204)
+          outputRes(`\nEGit version：${'1.0.4'}`, 204)
         } else {
           outputText()
         }
@@ -30,6 +30,10 @@ export class Egit {
 
   public initialize(): void {
     this.configureCommands()
+    const commandName = process.argv[1].split('/').pop()
+    if (commandName === 'eg' || commandName === 'egit') {
+      this.program.name(commandName)
+    }
     this.program.parseAsync(process.argv).catch((err) => {
       console.error(err)
       process.exit(1)

@@ -28,10 +28,11 @@ export const outputText = () => {
   outputRes('           checkout | ckb  ❤❤ 提供交互选择切换分支 ❤❤', 89)
   outputRes('             commit | cm   ❤❤ 包含了 add commit 以及 push 功能，并优化commit规范 ❤❤', 89)
   outputRes('         del-branch | d    ❤❤ 删除本地分支 ❤❤', 89)
-  outputRes('  deal-rebase-clash | drc  ❤❤ 解决rebase冲突后的执行流程 ❤❤', 89)
   outputRes('              merge | mg   ❤❤ 提供交互选择合并分支 ❤❤', 89)
   outputRes('               push | ps   ❤❤ 推送本地分支到远程仓库，自动pull最新代码 ❤❤', 89)
+  outputRes('               pull | pu   ❤❤ 自动pull最新代码 ❤❤', 89)
   outputRes('             rebase | rb   ❤❤ 变基处理，自动Fetch远端代码并自动merge ❤❤', 89)
+  outputRes('  deal-rebase-clash | drc  ❤❤ 解决rebase冲突后的执行流程 ❤❤', 89)
   outputRes('----------------------------------------------------------------------------', 89)
 }
 

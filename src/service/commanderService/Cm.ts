@@ -27,7 +27,7 @@ export default class CMCommand {
           if (!_pushRes || !checkExecaInfoNoError(_pushRes)) return
           outputRes('[push] 推送到远端仓库成功')
         } else {
-          console.log('未推送到远端仓库，请自行处理')
+          outputRes('未推送到远端仓库，请自行处理', 46, false)
         }
       })
     return command
